@@ -5,6 +5,8 @@ github.com/golang-jwt/jwt v3.2.2+incompatible h1:IfV12K8xAKAnZqdXVzCZ+TOjboZ2keL
 github.com/golang-jwt/jwt v3.2.2+incompatible/go.mod h1:8pz2t5EyA70fFQQSrl6XZXzqecmYZeUEB8OUGHkxJ+I=
 github.com/grokify/html-strip-tags-go v0.0.0-20200322061010-ea0c1cf2f119 h1:h3iGUlU8HyW4baKd6D+h1mwOHnM2kwskSuG6Bv4tSbc=
 github.com/grokify/html-strip-tags-go v0.0.0-20200322061010-ea0c1cf2f119/go.mod h1:2Su6romC5/1VXOQMaWL2yb618ARB8iVo6/DR99A6d78=
+github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
+github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
 github.com/labstack/echo/v4 v4.11.0 h1:4Dmi59tmrnFzOchz4EXuGjJhUfcEkU28iDKsiZVOQgw=
 github.com/labstack/echo/v4 v4.11.0/go.mod h1:YuYRTSM3CHs2ybfrL8Px48bO6BAnYIN4l8wSTMP6BDQ=
 github.com/labstack/gommon v0.4.0 h1:y7cvthEAEbU0yHOf4axH8ZG2NH8knB9iNSoTO8dyIk8=

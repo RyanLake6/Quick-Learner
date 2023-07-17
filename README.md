@@ -4,24 +4,26 @@ This service allows for the ingestion of a large text input and creates hyperlin
 
 # Versions:
 
-## V1 (Iterative):
+## V1 Naive Iterative Approach:
 
-This quick solution iteratively calls the wiki api causing for a slow response to return all wiki links mapped to found keywords
+Version 1 is a quick solution that iteratively calls the wiki api causing for a slow response to return all wiki links mapped to found keywords
 
-## V2 (Concurrent):
+## V2 Multi-threaded Concurrent Approach:
 
-TODO: Using worker pools and channels concurrently hit the api within many threads to lower response time
+Version 2 is a multi-threaded solution that creates worker pools and splits the large data ingestion into seperate jobs for the workers to handle. It attempts to optimize the number of workers and jobs based on the size of the data ingestion. This solution can be more than 10x faster than v1.
 
 TODO: Implement a queue service to hold all sent api requests as individual jobs that need to be completed within the pipeline
 
 # Display:
 
-Currently the display is just returning a map of all wiki links to their respective key words. TODO: planning on creating html to hyperlink each word as necessary for the user to be able to read their inputted text with the option to follow the wiki page to learn more
+Currently the display is just returning a map of all wiki links to their respective key words.
+
+TODO: planning on creating html to hyperlink each word as necessary for the user to be able to read their inputted text with the option to follow the wiki page to learn more
 
 # Endpoints:
 
 ```
-/v1/quickLearn
+/v<versionNumber>/quickLearn
 ```
 
 Pass in the text as a json body like the example below:

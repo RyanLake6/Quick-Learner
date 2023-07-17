@@ -5,8 +5,10 @@ import (
 	"errors"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"quick-learner/models"
 
+	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
 	"github.com/securisec/go-keywords"
 ) 
@@ -22,7 +24,6 @@ func ExtractKeywords(input string) (list []string, err error) {
 }
 
 // Returns a map of all keywords mapped to their top wiki link
-// TODO: this should run concurrently
 func GetAllWikiLinks(keywords []string) (wikiLinks map[string]string, err error) {
 	m := make(map[string]string)
 	for _, keyword := range keywords {
@@ -39,9 +40,8 @@ func GetAllWikiLinks(keywords []string) (wikiLinks map[string]string, err error)
 }
 
 // Returns the wiki link of passed in search
-// TODO: pull out the url into a env or config file
 func GetWikiLink (search string) (link string, err error) {
-	resp, err := http.Get("https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=" + search + "&namespace=0&limit=10&formatversion=2")
+	resp, err := http.Get(os.Getenv("WikipediaURL") + search)
    	if err != nil {
     	log.Errorf("Error hitting wiki api %v", err)
    	}
@@ -59,4 +59,23 @@ func GetWikiLink (search string) (link string, err error) {
 	}
 
 	return "", nil
+}
+
+func GetKeywords(c echo.Context) (keywords []string, err error) {
+	jsonBodyEncoded := make(map[string]interface{})
+	err = json.NewDecoder(c.Request().Body).Decode(&jsonBodyEncoded)
+	if err != nil {
+		log.Error("empty json body")
+		return nil, err
+	}
+
+	jsonBody, _ := json.Marshal(jsonBodyEncoded)
+
+	// Extract out all key words to get links for
+	keywords, err = ExtractKeywords(string(jsonBody))
+	if err != nil {
+		return nil, err
+	}
+
+	return keywords, nil
 }

@@ -3,6 +3,7 @@ module quick-learner
 go 1.19
 
 require (
+	github.com/joho/godotenv v1.5.1
 	github.com/labstack/echo/v4 v4.11.0
 	github.com/labstack/gommon v0.4.0
 	github.com/securisec/go-keywords v0.0.0-20200619134240-769e7273f2ed
